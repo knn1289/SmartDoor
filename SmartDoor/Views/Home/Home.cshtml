@@ -1,0 +1,41 @@
+﻿@using SmartDoor.Models
+
+
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<h1>Home</h1>
+@*<legend>Smart Door Devices:</legend>
+<br />
+<legend>Mobile Devices:</legend>
+<br />
+<legend>Videos:</legend>*@
+
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#pane1" data-toggle="tab">Smart Door Devices</a></li>
+        <li><a href="#pane2" data-toggle="tab">Android Devices</a></li>
+        <li><a href="#pane3" data-toggle="tab">Video Logs</a></li>
+        @*<li><a href="#pane4" data-toggle="tab">WebRTC</a></li>*@
+    </ul>
+    <div class="tab-content">
+        <div id="pane1" class="tab-pane active">
+            <h4>Smart Door Devices List</h4>
+            @Html.Action("Index", "DoorDevice")
+        </div>
+        <div id="pane2" class="tab-pane">
+            <h4>Android Devices List</h4>
+            @Html.Action("Index", "AndroidDevice")
+        </div>
+        <div id="pane3" class="tab-pane">
+            <h4>Video Logs List</h4>
+            @Html.Action("Index", "VideoLog")
+        </div>
+        @*<div id="pane4" class="tab-pane">
+            <h4>Video Logs List</h4>
+            @Html.Action("WebRtc", "VideoLog")
+        </div>*@
+    </div><!-- /.tab-content -->
+</div><!-- /.tabbable -->

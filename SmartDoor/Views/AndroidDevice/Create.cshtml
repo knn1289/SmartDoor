@@ -1,0 +1,78 @@
+﻿@using Microsoft.AspNet.Identity
+@using SmartDoor.Controllers
+@using SmartDoor.Models
+@model SmartDoor.Models.AndroidDeviceModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>AndroidDeviceModel</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SmartDoorDeviceId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.SmartDoorDeviceId)*@
+                @Html.DropDownListFor(x => x.SmartDoorDeviceId, new SelectList(DoorDeviceController.GetAllDoorDevices(User.Identity.GetUserId()), "Key", "Value"), "-- Select --")
+                @Html.ValidationMessageFor(model => model.SmartDoorDeviceId)
+            </div>
+        </div>
+        @*@Html.DropDownListFor(x => x.DoorDevice, new SelectList(DoorDeviceController.GetAllDoorDevices(User.Identity.GetUserId()), "Key", "Value", Model.DoorDevice), "-- Select --", new { })<br />*@
+        
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.UserId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserId)
+                @Html.ValidationMessageFor(model => model.UserId)
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Privilege, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Privilege)
+                @Html.ValidationMessageFor(model => model.Privilege)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RoomId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RoomId)
+                @Html.ValidationMessageFor(model => model.RoomId)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>*@
+    </div>
+    <div>
+        <input type="submit" value="Create" class="btn btn-success" />
+        @Html.ActionLink("Back to List", "Home", "Home", null, new { @class = "btn btn-primary" })
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

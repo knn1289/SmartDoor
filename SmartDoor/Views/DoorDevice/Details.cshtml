@@ -1,0 +1,57 @@
+﻿@model SmartDoor.Models.DoorDeviceModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Door Device Details</h2>
+
+<div>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AndroidDeviceId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AndroidDeviceId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Privilege)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Privilege)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-success" }) 
+    @Html.ActionLink("Back to List", "Home", "Home", null, new { @class = "btn btn-primary" })
+</p>

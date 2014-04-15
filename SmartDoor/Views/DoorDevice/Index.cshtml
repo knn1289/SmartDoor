@@ -1,0 +1,86 @@
+﻿@model IEnumerable<SmartDoor.Models.DoorDeviceModel>
+@using Microsoft.AspNet.Identity;
+
+@{
+    ViewBag.Title = "List of Door Devices";
+}
+
+@*<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+
+<div class="row">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            Door Devices
+            <div style="float: right;">
+                <div class="btn-group btn-group-xs">@Html.ActionLink("New Door Device", "Create", null, new { @class = "btn btn-primary" })</div>
+            </div>
+            <div style="float: right; margin-right: 5px;">
+                @*@Html.DropDownList("filter", new SelectList(ListHelper.GetFilterOptions(), "Key", "Value"), null, new { })*@
+            </div>
+        </div>
+        <div class="table-body">
+            <table id="doorDevicesTable" class="table table-bordered table-striped table-hover table-condensed table-selectable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AndroidDeviceId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserId)
+                        </th>
+                        @*<th>
+                            @Html.DisplayNameFor(model => model.Privilege)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RoomId)
+                        </th>*@
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Where(x => System.String.CompareOrdinal(x.UserId, User.Identity.GetUserId()) == 0))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AndroidDeviceId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserId)
+                            </td>
+                            @*<td>
+                                @Html.DisplayFor(modelItem => item.Privilege)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RoomId)
+                            </td>*@
+                            <td align ="center">
+                                @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
+                                <div class="btn-group btn-group-xs">
+                                    @Html.ActionLink("Details", "Details", new { id = item.Id}, new { @class = "btn btn-info" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#doorDevicesTable').dataTable({
+        });
+    });
+</script>
